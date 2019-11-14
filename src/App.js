@@ -10,25 +10,27 @@ const [homeScore, sethomeScore] = useState(0);
 const [awayScore, setawayScore] = useState(0);
 const [timer, setTimer] = useState(35);
 useEffect(() => {
-  const clock = setPenalty(() => {
+  const clock = setTimeout(() => {
     if (timer > 0) {
       setTimer(timer - 1);
     } else {
-      clearPenalty(clock);
+      clearTimeout(clock);
     }
   }, 1000);
 }, [timer]);
+
 const reset = e => {
   sethomeScore(0);
   setawayScore(0);
 };
+
 
   return (
     <div className="container">
       <section className="scoreboard">
         <div className="topRow">
           <div className="home">
-            <h2 className="home__name">Lions</h2>
+            <h2 className="home__name">Dallas</h2>
 
             {/* TODO STEP 3 - We need to change the hardcoded values in these divs to accept dynamic values from our state. */}
 
@@ -36,7 +38,7 @@ const reset = e => {
           </div>
           <div className="timer">00:{timer}</div>
           <div className="away">
-            <h2 className="away__name">Tigers</h2>
+            <h2 className="away__name">Philly</h2>
             <div className="away__score">{awayScore}</div>
           </div>
         </div>
@@ -65,6 +67,10 @@ const reset = e => {
             onClick = {() => setawayScore(awayScore + 3)}>
             Away Field Goal
           </button>
+          <button className="awayButtons__fieldGoal" onClick={reset}>
+            Reset
+          </button>
+
         </div>
       </section>
     </div>
